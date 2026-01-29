@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Divisibility Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      padding: 8px;
+      font-size: 16px;
+      width: 200px;
+    }
+    button {
+      padding: 8px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    .yes {
+      color: green;
+    }
+    .no {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Divisibility Checker</h1>
+
+  <input
+    type="number"
+    id="numberInput"
+    placeholder="Enter a number"
+    onkeydown="if(event.key === 'Enter') checkDivisibility();"
+  >
+  <button onclick="checkDivisibility()">Check</button>
+
+  <ul id="results"></ul>
+
+  <script>
+    function checkDivisibility() {
+      const num = document.getElementById("numberInput").value;
+      const results = document.getElementById("results");
+
+      results.innerHTML = "";
+
+      if (num === "") {
+        results.innerHTML = "<li>Please enter a number.</li>";
+        return;
+      }
+
+      const divisors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
+      divisors.forEach(d => {
+        const li = document.createElement("li");
+        if (num % d === 0) {
+          li.textContent = num + " is divisible by " + d;
+          li.className = "yes";
+        } else {
+          li.textContent = num + " is not divisible by " + d;
+          li.className = "no";
+        }
+        results.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
