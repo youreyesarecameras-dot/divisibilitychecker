@@ -38,7 +38,7 @@
 </head>
 <body>
 
-  <h1>Divisibility Checker</h1>
+  <h1>Divisible by 7 Checker</h1>
 
   <input
     type="number"
@@ -52,27 +52,36 @@
 
   <script>
     function checkDivisibility() {
-      const num = document.getElementById("numberInput").value;
+      const num = Number(document.getElementById("numberInput").value);
       const results = document.getElementById("results");
 
       results.innerHTML = "";
 
-      if (num === "") {
+      if (isNaN(num)) {
         results.innerHTML = "<li>Please enter a number.</li>";
         return;
       }
 
-      const divisors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50];
+      const divisors = [0, 2, 3, 5, 7, 10];
 
       divisors.forEach(d => {
         const li = document.createElement("li");
-        if (num % d === 0) {
+
+        // Division by zero is never allowed
+        if (d === 0) {
+          li.textContent = num + " is not divisible by 0";
+          li.className = "no";
+        }
+        // Normal divisibility check
+        else if (num % d === 0) {
           li.textContent = num + " is divisible by " + d;
           li.className = "yes";
-        } else {
+        }
+        else {
           li.textContent = num + " is not divisible by " + d;
           li.className = "no";
         }
+
         results.appendChild(li);
       });
     }
