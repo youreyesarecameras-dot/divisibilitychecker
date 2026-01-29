@@ -28,12 +28,8 @@
       font-size: 18px;
       margin: 5px 0;
     }
-    .yes {
-      color: green;
-    }
-    .no {
-      color: red;
-    }
+    .yes { color: green; }
+    .no { color: red; }
   </style>
 </head>
 <body>
@@ -67,17 +63,19 @@
       divisors.forEach(d => {
         const li = document.createElement("li");
 
-        // Division by zero is never allowed
+        // 🚫 ABSOLUTE RULE: division by 0 is never allowed
         if (d === 0) {
           li.textContent = num + " is not divisible by 0";
           li.className = "no";
+          results.appendChild(li);
+          return; // ← stops here, no % check
         }
-        // Normal divisibility check
-        else if (num % d === 0) {
+
+        // ✅ Safe divisibility check
+        if (num % d === 0) {
           li.textContent = num + " is divisible by " + d;
           li.className = "yes";
-        }
-        else {
+        } else {
           li.textContent = num + " is not divisible by " + d;
           li.className = "no";
         }
@@ -89,3 +87,4 @@
 
 </body>
 </html>
+
